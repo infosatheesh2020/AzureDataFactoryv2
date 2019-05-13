@@ -1,0 +1,19 @@
+{
+	"name": "DestinationDataset_fj7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlobFSFile",
+		"typeProperties": {
+			"format": {
+				"type": "JsonFormat",
+				"filePattern": "arrayOfObjects"
+			},
+			"fileName": "",
+			"folderPath": "movies"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
