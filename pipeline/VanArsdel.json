@@ -42,6 +42,11 @@
 					}
 				]
 			}
-		]
+		],
+		"parameters": {
+			"tableList": {
+				"type": "array"
+			}
+		}
 	}
 }
