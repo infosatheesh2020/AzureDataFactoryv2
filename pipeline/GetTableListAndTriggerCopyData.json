@@ -32,7 +32,10 @@
 						"referenceName": "VanArsdel",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"tableList": "@activity('LookupTableList').output.value"
+					}
 				}
 			}
 		]
