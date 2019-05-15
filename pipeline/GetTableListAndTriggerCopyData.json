@@ -42,7 +42,10 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"tableList": "@activity('LookupTableList').output.value"
+						"tableList": {
+							"value": "@activity('Lookup_VanArsdel_tables').output.value",
+							"type": "Expression"
+						}
 					}
 				}
 			}
