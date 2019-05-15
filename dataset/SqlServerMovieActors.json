@@ -1,0 +1,27 @@
+{
+	"name": "SqlServerMovieActors",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "VanArsdel_SqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "MovieActorID",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "MovieID",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ActorID",
+				"type": "uniqueidentifier"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[MovieActors]"
+		}
+	}
+}
