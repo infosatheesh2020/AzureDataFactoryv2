@@ -3,44 +3,40 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "VanArsdel-copy-actors",
-				"type": "Copy",
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
+				"name": "IterateSQLTables",
+				"type": "ForEach",
 				"typeProperties": {
-					"source": {
-						"type": "SqlServerSource"
+					"items": {
+						"value": "@pipeline().parameters.tableList",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSetting"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSetting",
-							"quoteAllText": true,
-							"fileExtension": ".csv"
+					"activities": [
+						{
+							"name": "CopyData",
+							"type": "Copy",
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": "SELECT * FROM [@{item().TABLE_SCHEMA}].[@{item().TABLE_NAME}]"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SqlServerActors",
+									"type": "DatasetReference"
+								}
+							]
 						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "SqlServerActors",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "VanArsdel_Actors",
-						"type": "DatasetReference"
-					}
-				]
+					]
+				}
 			}
 		],
 		"parameters": {
