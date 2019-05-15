@@ -1025,6 +1025,10 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "[[@{item().TABLE_SCHEMA}].[@{item().TABLE_NAME}]",
+							"type": "Expression"
+						},
 						"container": "vanarsdel"
 					},
 					"columnDelimiter": ",",
