@@ -24,14 +24,14 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSetting",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "SqlServerCustomers",
+						"referenceName": "SqlServerActors",
 						"type": "DatasetReference"
 					}
 				],
