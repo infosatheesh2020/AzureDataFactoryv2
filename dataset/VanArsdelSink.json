@@ -10,7 +10,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "[@{item().TABLE_SCHEMA}].[@{item().TABLE_NAME}]",
+					"value": "[@{item().TABLE_SCHEMA}].[@{item().TABLE_NAME}].csv",
 					"type": "Expression"
 				},
 				"container": "vanarsdel"
