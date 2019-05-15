@@ -564,7 +564,11 @@
 												"fileExtension": ".csv"
 											}
 										},
-										"enableStaging": false
+										"enableStaging": false,
+										"translator": {
+											"value": "@pipeline().parameters.tableList",
+											"type": "Expression"
+										}
 									},
 									"inputs": [
 										{
