@@ -31,13 +31,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SqlServerMovieActors",
+						"referenceName": "SqlServerActors",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "actors",
+						"referenceName": "VanArsdel_Actors",
 						"type": "DatasetReference"
 					}
 				]
