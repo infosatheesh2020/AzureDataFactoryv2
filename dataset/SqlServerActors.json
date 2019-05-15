@@ -1,0 +1,27 @@
+{
+	"name": "SqlServerActors",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "VanArsdel_SqlServer",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ActorID",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ActorName",
+				"type": "varchar"
+			},
+			{
+				"name": "Gender",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Actors]"
+		}
+	}
+}
