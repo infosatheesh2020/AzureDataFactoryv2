@@ -27,6 +27,14 @@
 			{
 				"name": "TriggerCopy",
 				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Lookup_VanArsdel_tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "VanArsdel",
