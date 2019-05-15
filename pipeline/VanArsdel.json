@@ -40,11 +40,7 @@
 										"fileExtension": ".csv"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"value": "@pipeline().parameters.tableList",
-									"type": "Expression"
-								}
+								"enableStaging": false
 							},
 							"inputs": [
 								{
