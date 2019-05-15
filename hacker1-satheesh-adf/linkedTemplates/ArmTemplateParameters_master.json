@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "hacker1-satheesh-adf"
+		},
+		"AzureDataLakeStorage_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase_cloudsales_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase_cloudstreaming_connectionString": {
+			"value": ""
+		},
+		"CosmosDb_connectionString": {
+			"value": ""
+		},
+		"FourthCoffee_password": {
+			"value": ""
+		},
+		"DestinationDataset_fj7_properties_typeProperties_fileName": {
+			"value": ""
+		},
+		"DestinationDataset_fj7_properties_typeProperties_folderPath": {
+			"value": "movies"
+		},
+		"AzureDataLakeStorage_properties_typeProperties_url": {
+			"value": "https://adlsg2store.dfs.core.windows.net"
+		},
+		"FourthCoffee_properties_typeProperties_userId": {
+			"value": "openhackadmin"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
