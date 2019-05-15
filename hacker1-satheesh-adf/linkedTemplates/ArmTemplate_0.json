@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FourthCoffee'"
 		},
+		"VanArsdel_SqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'VanArsdel_SqlServer'"
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsg2store.dfs.core.windows.net"
@@ -439,319 +443,38 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Copy_cosmos')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
+			"name": "[concat(parameters('factoryName'), '/VanArsdel_SqlServer')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"activities": [
-					{
-						"name": "Copy_fj7",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "movies"
-							},
-							{
-								"name": "Destination",
-								"value": "movies/"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "DocumentDbCollectionSource",
-								"nestingSeparator": "."
-							},
-							"sink": {
-								"type": "AzureBlobFSSink"
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_fj7",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_fj7",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_fj7')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_fj7')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Copy_sql_cloudsales')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ForEach_cpo",
-						"type": "ForEach",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@pipeline().parameters.cw_items",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "Copy_cpo",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [
-										{
-											"name": "Source",
-											"value": "@{item().source.tableName}"
-										},
-										{
-											"name": "Destination",
-											"value": "/@{item().destination.fileName}"
-										}
-									],
-									"typeProperties": {
-										"source": {
-											"type": "AzureSqlSource"
-										},
-										"sink": {
-											"type": "DelimitedTextSink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSetting"
-											},
-											"formatSettings": {
-												"type": "DelimitedTextWriteSetting",
-												"quoteAllText": true,
-												"fileExtension": ".txt"
-											}
-										},
-										"enableStaging": false
-									},
-									"inputs": [
-										{
-											"referenceName": "SourceDataset_cpo",
-											"type": "DatasetReference",
-											"parameters": {
-												"cw_tableName": "@item().source.tableName"
-											}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "DestinationDataset_cpo",
-											"type": "DatasetReference",
-											"parameters": {
-												"cw_fileName": "@item().destination.fileName"
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"parameters": {
-					"cw_items": {
-						"type": "Array",
-						"defaultValue": [
-							{
-								"source": {
-									"tableName": "[[dbo].[Addresses]"
-								},
-								"destination": {
-									"fileName": "[[dbo].[Addresses].txt"
-								}
-							},
-							{
-								"source": {
-									"tableName": "[[dbo].[Customers]"
-								},
-								"destination": {
-									"fileName": "[[dbo].[Customers].txt"
-								}
-							},
-							{
-								"source": {
-									"tableName": "[[dbo].[OrderDetails]"
-								},
-								"destination": {
-									"fileName": "[[dbo].[OrderDetails].txt"
-								}
-							},
-							{
-								"source": {
-									"tableName": "[[dbo].[Orders]"
-								},
-								"destination": {
-									"fileName": "[[dbo].[Orders].txt"
-								}
-							}
-						]
-					}
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('VanArsdel_SqlServer_connectionString')]"
 				},
-				"annotations": []
+				"connectVia": {
+					"referenceName": "VanArsdel-integrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_cpo')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_cpo')]"
+				"[concat(variables('factoryId'), '/integrationRuntimes/VanArsdel-integrationRuntime')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Copy_sql_cloudstreaming')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ForEach_ncx",
-						"type": "ForEach",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@pipeline().parameters.cw_items",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "Copy_ncx",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [
-										{
-											"name": "Source",
-											"value": "@{item().source.tableName}"
-										},
-										{
-											"name": "Destination",
-											"value": "/@{item().destination.fileName}"
-										}
-									],
-									"typeProperties": {
-										"source": {
-											"type": "AzureSqlSource"
-										},
-										"sink": {
-											"type": "DelimitedTextSink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSetting"
-											},
-											"formatSettings": {
-												"type": "DelimitedTextWriteSetting",
-												"quoteAllText": true,
-												"fileExtension": ".txt"
-											}
-										},
-										"enableStaging": false
-									},
-									"inputs": [
-										{
-											"referenceName": "SourceDataset_ncx",
-											"type": "DatasetReference",
-											"parameters": {
-												"cw_tableName": "@item().source.tableName"
-											}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "DestinationDataset_ncx",
-											"type": "DatasetReference",
-											"parameters": {
-												"cw_fileName": "@item().destination.fileName"
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"parameters": {
-					"cw_items": {
-						"type": "Array",
-						"defaultValue": [
-							{
-								"source": {
-									"tableName": "[[dbo].[Addresses]"
-								},
-								"destination": {
-									"fileName": "[[dbo].[Addresses].txt"
-								}
-							},
-							{
-								"source": {
-									"tableName": "[[dbo].[Customers]"
-								},
-								"destination": {
-									"fileName": "[[dbo].[Customers].txt"
-								}
-							},
-							{
-								"source": {
-									"tableName": "[[dbo].[Transactions]"
-								},
-								"destination": {
-									"fileName": "[[dbo].[Transactions].txt"
-								}
-							}
-						]
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_ncx')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_ncx')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FourthCoffee')]",
+			"name": "[concat(parameters('factoryName'), '/VanArsdel_Actors')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "FourthCoffee",
+					"referenceName": "AzureDataLakeStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "FileServerLocation"
+						"type": "AzureBlobFSLocation"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -761,7 +484,61 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/FourthCoffee')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VanArsdel_MovieActors')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"container": "vanarsdel"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VanArsdelSink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"container": "vanarsdel"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage')]"
 			]
 		}
 	]

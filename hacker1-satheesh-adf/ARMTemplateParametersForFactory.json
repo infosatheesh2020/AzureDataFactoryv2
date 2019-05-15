@@ -20,6 +20,9 @@
 		"FourthCoffee_password": {
 			"value": ""
 		},
+		"VanArsdel_SqlServer_connectionString": {
+			"value": ""
+		},
 		"DestinationDataset_fj7_properties_typeProperties_fileName": {
 			"value": ""
 		},
