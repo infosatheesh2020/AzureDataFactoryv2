@@ -522,7 +522,8 @@
 										"sink": {
 											"type": "DelimitedTextSink",
 											"storeSettings": {
-												"type": "AzureBlobFSWriteSetting"
+												"type": "AzureBlobFSWriteSetting",
+												"copyBehavior": "PreserveHierarchy"
 											},
 											"formatSettings": {
 												"type": "DelimitedTextWriteSetting",
@@ -530,11 +531,7 @@
 												"fileExtension": ".csv"
 											}
 										},
-										"enableStaging": false,
-										"translator": {
-											"value": "@pipeline().parameters.tableList",
-											"type": "Expression"
-										}
+										"enableStaging": false
 									},
 									"inputs": [
 										{
