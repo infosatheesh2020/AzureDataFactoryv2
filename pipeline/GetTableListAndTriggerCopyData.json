@@ -23,6 +23,17 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "TriggerCopy",
+				"type": "ExecutePipeline",
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "VanArsdel",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		]
 	}
