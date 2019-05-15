@@ -1,5 +1,5 @@
 {
-	"name": "actors",
+	"name": "VanArsdel_Actors",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage",
