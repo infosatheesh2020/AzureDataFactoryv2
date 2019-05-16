@@ -28,7 +28,8 @@
 						"nestingSeparator": "."
 					},
 					"sink": {
-						"type": "AzureBlobFSSink"
+						"type": "AzureBlobFSSink",
+						"copyBehavior": "PreserveHierarchy"
 					},
 					"enableStaging": false
 				},
