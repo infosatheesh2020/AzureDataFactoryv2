@@ -85,7 +85,8 @@
 								"nestingSeparator": "."
 							},
 							"sink": {
-								"type": "AzureBlobFSSink"
+								"type": "AzureBlobFSSink",
+								"copyBehavior": "PreserveHierarchy"
 							},
 							"enableStaging": false
 						},
@@ -687,7 +688,7 @@
 				"typeProperties": {
 					"format": {
 						"type": "JsonFormat",
-						"filePattern": "arrayOfObjects"
+						"filePattern": "setOfObjects"
 					},
 					"fileName": "[parameters('DestinationDataset_fj7_properties_typeProperties_fileName')]",
 					"folderPath": "[parameters('DestinationDataset_fj7_properties_typeProperties_folderPath')]"
