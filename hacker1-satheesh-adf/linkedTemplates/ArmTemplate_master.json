@@ -33,7 +33,7 @@
 		},
 		"DestinationDataset_fj7_properties_typeProperties_fileName": {
 			"type": "string",
-			"defaultValue": ""
+			"defaultValue": "movies.json"
 		},
 		"DestinationDataset_fj7_properties_typeProperties_folderPath": {
 			"type": "string",

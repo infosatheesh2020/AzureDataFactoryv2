@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"DestinationDataset_fj7_properties_typeProperties_fileName": {
-			"value": ""
+			"value": "movies.json"
 		},
 		"DestinationDataset_fj7_properties_typeProperties_folderPath": {
 			"value": "movies"
