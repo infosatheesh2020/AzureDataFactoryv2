@@ -11,7 +11,7 @@
 				"type": "JsonFormat",
 				"filePattern": "setOfObjects"
 			},
-			"fileName": "",
+			"fileName": "movies.json",
 			"folderPath": "movies"
 		}
 	},
