@@ -281,8 +281,7 @@
 										"sink": {
 											"type": "DelimitedTextSink",
 											"storeSettings": {
-												"type": "AzureBlobFSWriteSetting",
-												"copyBehavior": "PreserveHierarchy"
+												"type": "AzureBlobFSWriteSetting"
 											},
 											"formatSettings": {
 												"type": "DelimitedTextWriteSetting",
